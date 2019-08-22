@@ -24,12 +24,25 @@ fetch('https://ghibliapi.herokuapp.com/people')
   return response.json(); 
 })
 .then(function(json) {
-  let characterList = json.results; 
+  let people = json.results;
+  console.log(json) 
+  displayResults(json)
 
-  for(p of people) {
-    let listItem = document.createElement('li'); 
-    listItem.innerHTML = '<p>' + p.name + '</p>';
-    studioGhibliPeople.appendChild(listItem);  
-  }
+  
+  // for(p of people) {
+  //   let listItem = document.createElement('li'); 
+  //   listItem.innerHTML = '<p>' + p.name + '</p>'; 
+  //   studioGhibliPeople.appendChild(listItem);  
+  // }
 
 });
+
+
+function displayResults(json) {
+for(let i=0; i<json.length; i ++) {
+  let listItem = document.createElement('button')
+  listItem.innerHTML = json[i].name
+  studioGhibliPeople.appendChild(listItem);  
+
+}
+}
